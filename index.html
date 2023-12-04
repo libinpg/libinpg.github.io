@@ -1,3 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Markdown 文件导航</title>
     <script>
-      window.location.href="http://wh-nbb6aneepbaawq7tphi.my3w.com/"
+        // 当文档加载完毕时执行
+        document.addEventListener("DOMContentLoaded", function() {
+            // 查找所有的链接
+            var links = document.querySelectorAll("a");
+
+            // 遍历每个链接
+            links.forEach(function(link) {
+                // 获取链接的 href 属性
+                var href = link.getAttribute("href");
+
+                // 从 href 中提取文件名
+                var filename = href.split('/').pop().split('.')[0];
+
+                // 替换链接文本
+                link.textContent = filename;
+            });
+        });
     </script>
+</head>
+<body>
+    <h1>欢迎来到我的 Markdown 导航页面</h1>
+    <p>点击下面的链接来查看不同的 Markdown 文件：</p>
+    <ul>
+        <li><a href="markdown1.md">Markdown 文件</a></li>
+
+        <!-- 添加更多的 Markdown 文件链接 -->
+    </ul>
+</body>
+</html>
