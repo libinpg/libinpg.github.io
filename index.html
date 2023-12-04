@@ -2,34 +2,7 @@
 <html>
 <head>
     <title>Markdown 文件导航</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        // 当文档加载完毕时执行
-        document.addEventListener("DOMContentLoaded", function() {
-            // 查找所有的链接
-            var links = document.querySelectorAll("a");
-
-            // 遍历每个链接
-            links.forEach(function(link) {
-                link.addEventListener("click", function(event) {
-                    event.preventDefault(); // 阻止链接的默认行为
-                    var href = link.getAttribute("href");
-
-                    // 使用 fetch API 加载 Markdown 文件
-                    fetch(href)
-                        .then(response => response.text())
-                        .then(text => {
-                            // 使用 marked.parse 转换 Markdown 文本
-                            var html = marked.parse(text);
-
-                            // 显示转换后的 HTML
-                            document.getElementById("markdown-content").innerHTML = html;
-                        });
-                });
-            });
-        });
-    </script>
-    <style>
+     <style>
         body {
             background-color: #fdf6e3; /* 淡黄色背景 */
             color: #333; /* 暗灰色文本 */
@@ -61,6 +34,33 @@
             font-size: 1em;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // 当文档加载完毕时执行
+        document.addEventListener("DOMContentLoaded", function() {
+            // 查找所有的链接
+            var links = document.querySelectorAll("a");
+
+            // 遍历每个链接
+            links.forEach(function(link) {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault(); // 阻止链接的默认行为
+                    var href = link.getAttribute("href");
+
+                    // 使用 fetch API 加载 Markdown 文件
+                    fetch(href)
+                        .then(response => response.text())
+                        .then(text => {
+                            // 使用 marked.parse 转换 Markdown 文本
+                            var html = marked.parse(text);
+
+                            // 显示转换后的 HTML
+                            document.getElementById("markdown-content").innerHTML = html;
+                        });
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>欢迎来到我的 Markdown 导航页面</h1>
