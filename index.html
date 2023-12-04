@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <title>Markdown 文件导航</title>
@@ -28,5 +28,48 @@
     <ul>
         <li><a href="transformer.md">Markdown 文件</a></li>
     </ul>
+</body>
+</html>
+ -->
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Markdown 文件导航</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // 当文档加载完毕时执行
+        document.addEventListener("DOMContentLoaded", function() {
+            // 查找所有的链接
+            var links = document.querySelectorAll("a");
+
+            // 遍历每个链接
+            links.forEach(function(link) {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault(); // 阻止链接的默认行为
+                    var href = link.getAttribute("href");
+
+                    // 使用 fetch API 加载 Markdown 文件
+                    fetch(href)
+                        .then(response => response.text())
+                        .then(text => {
+                            // 使用 marked.js 转换 Markdown 文本
+                            var html = marked(text);
+
+                            // 显示转换后的 HTML
+                            document.getElementById("markdown-content").innerHTML = html;
+                        });
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>欢迎来到我的 Markdown 导航页面</h1>
+    <p>点击下面的链接来查看不同的 Markdown 文件：</p>
+    <ul>
+        <li><a href="transformer.md">Transformer</a></li>
+        <!-- 添加更多的 Markdown 文件链接 -->
+    </ul>
+    <div id="markdown-content"></div>
 </body>
 </html>
